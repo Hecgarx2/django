@@ -5,4 +5,8 @@ def index(request):
     return HttpResponse("Hola mundo.")
 
 def greeting(request, name):
-    return HttpResponse(f"Hello, {name}!")
+    template = loader.get_template("index.html")
+    context = {
+        "name": name,
+    }
+    return HttpResponse(template.render(context, request))
